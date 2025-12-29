@@ -3,16 +3,14 @@
 # Set install mode to online since boot.sh is used for curl installations
 export BLACKARCH_ONLINE_INSTALL=true
 
-ansi_art='                 ▄▄▄                                                   
- ▄█████▄    ▄███████████▄    ▄███████   ▄███████   ▄███████   ▄█   █▄    ▄█   █▄ 
-███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
-███   ███  ███   ███   ███  ███   ███  ███   ███  ███   █▀   ███   ███  ███   ███
-███   ███  ███   ███   ███ ▄███▄▄▄███ ▄███▄▄▄██▀  ███       ▄███▄▄▄███▄ ███▄▄▄███
-███   ███  ███   ███   ███ ▀███▀▀▀███ ▀███▀▀▀▀    ███      ▀▀███▀▀▀███  ▀▀▀▀▀▀███
-███   ███  ███   ███   ███  ███   ███ ██████████  ███   █▄   ███   ███  ▄██   ███
-███   ███  ███   ███   ███  ███   ███  ███   ███  ███   ███  ███   ███  ███   ███
- ▀█████▀    ▀█   ███   █▀   ███   █▀   ███   ███  ███████▀   ███   █▀    ▀█████▀ 
-                                       ███   █▀                                  '
+ansi_art='                 ▄▄▄
+██████  ██       █████   ██████ ██   ██      █████  ██████   ██████ ██   ██ 
+██   ██ ██      ██   ██ ██      ██  ██      ██   ██ ██   ██ ██      ██   ██ 
+██████  ██      ███████ ██      █████       ███████ ██████  ██      ███████ 
+██   ██ ██      ██   ██ ██      ██  ██      ██   ██ ██   ██ ██      ██   ██ 
+██████  ███████ ██   ██  ██████ ██   ██     ██   ██ ██   ██  ██████ ██   ██ 
+                                                                            
+'
 
 clear
 echo -e "\n$ansi_art\n"
@@ -20,7 +18,7 @@ echo -e "\n$ansi_art\n"
 sudo pacman -Syu --noconfirm --needed git
 
 # Use custom repo if specified, otherwise default to basecamp/blackarch
-BLACKARCH_REPO="${BLACKARCH_REPO:-basecamp/blackarch}"
+BLACKARCH_REPO="${BLACKARCH_REPO:-pankajsam21789/blackarch-hyprland}"
 
 echo -e "\nCloning Blackarch from: https://github.com/${BLACKARCH_REPO}.git"
 rm -rf ~/.local/share/blackarch/
