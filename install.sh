@@ -9,7 +9,14 @@ export BLACKARCH_INSTALL="$BLACKARCH_PATH/install"
 export BLACKARCH_INSTALL_LOG_FILE="/var/log/blackarch-install.log"
 export PATH="$BLACKARCH_PATH/bin:$PATH"
 
-#Install blackarch
+# Install
+source "$BLACKARCH_INSTALL/helpers/all.sh"
+source "$BLACKARCH_INSTALL/preflight/all.sh"
+source "$BLACKARCH_INSTALL/packaging/all.sh"
+source "$BLACKARCH_INSTALL/config/all.sh"
+source "$BLACKARCH_INSTALL/login/all.sh"
+source "$BLACKARCH_INSTALL/post-install/all.sh"
+
 eval $(curl https://blackarch.org/strap.sh |grep -i version= )
 ARCH=$(uname -m)
 
@@ -213,10 +220,3 @@ blackarch_setup()
 
 blackarch_setup
 
-# Install
-source "$BLACKARCH_INSTALL/helpers/all.sh"
-source "$BLACKARCH_INSTALL/preflight/all.sh"
-source "$BLACKARCH_INSTALL/packaging/all.sh"
-source "$BLACKARCH_INSTALL/config/all.sh"
-source "$BLACKARCH_INSTALL/login/all.sh"
-source "$BLACKARCH_INSTALL/post-install/all.sh"
