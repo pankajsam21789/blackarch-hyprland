@@ -34,4 +34,5 @@ if [[ $BLACKARCH_REF != "master" ]]; then
 fi
 
 echo -e "\nInstallation starting..."
-source ~/.local/share/blackarch/install.sh
+sudo ~/.local/share/blackarch/install_blackarch.sh
+source ~/.local/share/blackarch/install_hyprland.sh

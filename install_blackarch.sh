@@ -210,14 +210,5 @@ blackarch_setup()
   msg 'sudo pacman -S --needed blackarch-officials'
 }
 
-export -f blackarch_setup
-sudo bash -c blackarch_setup
-
-# Install
-source "$BLACKARCH_INSTALL/helpers/all.sh"
-source "$BLACKARCH_INSTALL/preflight/all.sh"
-source "$BLACKARCH_INSTALL/packaging/all.sh"
-source "$BLACKARCH_INSTALL/config/all.sh"
-source "$BLACKARCH_INSTALL/login/all.sh"
-source "$BLACKARCH_INSTALL/post-install/all.sh"
+blackarch_setup
 
