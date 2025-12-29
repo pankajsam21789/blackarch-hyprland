@@ -9,14 +9,6 @@ export BLACKARCH_INSTALL="$BLACKARCH_PATH/install"
 export BLACKARCH_INSTALL_LOG_FILE="/var/log/blackarch-install.log"
 export PATH="$BLACKARCH_PATH/bin:$PATH"
 
-# Install
-source "$BLACKARCH_INSTALL/helpers/all.sh"
-source "$BLACKARCH_INSTALL/preflight/all.sh"
-source "$BLACKARCH_INSTALL/packaging/all.sh"
-source "$BLACKARCH_INSTALL/config/all.sh"
-source "$BLACKARCH_INSTALL/login/all.sh"
-source "$BLACKARCH_INSTALL/post-install/all.sh"
-
 eval $(curl https://blackarch.org/strap.sh |grep -i version= )
 ARCH=$(uname -m)
 
@@ -146,7 +138,7 @@ get_mirror()
   mirror_r="https://blackarch.org"
 
   msg "fetching new mirror list..."
-  if ! curl -s "$mirror_r/$MIRROR_F" -o "$mirror_p/$MIRROR_F" ; then
+  if ! sudo curl -s "$mirror_r/$MIRROR_F" -o "$mirror_p/$MIRROR_F" ; then
     err "we couldn't fetch the mirror list from: $mirror_r/$MIRROR_F"
   fi
 
@@ -218,5 +210,14 @@ blackarch_setup()
   msg 'sudo pacman -S --needed blackarch-officials'
 }
 
-blackarch_setup
+export -f blackarch_setup
+sudo bash -c blackarch_setup
+
+# Install
+source "$BLACKARCH_INSTALL/helpers/all.sh"
+source "$BLACKARCH_INSTALL/preflight/all.sh"
+source "$BLACKARCH_INSTALL/packaging/all.sh"
+source "$BLACKARCH_INSTALL/config/all.sh"
+source "$BLACKARCH_INSTALL/login/all.sh"
+source "$BLACKARCH_INSTALL/post-install/all.sh"
 
