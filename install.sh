@@ -163,7 +163,7 @@ update_pacman_conf()
 # synchronize and update
 pacman_update()
 {
-  if pacman -Syy; then
+  if sudo pacman -Syy; then
     return $SUCCESS
   fi
 
@@ -177,7 +177,7 @@ pacman_upgrade()
   echo 'perform full system upgrade? (pacman -Su) [Yn]:'
   read conf < /dev/tty
   case "$conf" in
-    ''|y|Y) pacman -Su ;;
+    ''|y|Y) sudo pacman -Su ;;
     n|N) warn 'some blackarch packages may not work without an up-to-date system.' ;;
   esac
 }
@@ -210,7 +210,7 @@ blackarch_setup()
   pacman_update
   reset_umask
   msg 'installing blackarch-mirrorlist package'
-  pacman -S --noconfirm blackarch-mirrorlist
+  blackarch-pkg-add blackarch-mirrorlist
   if [ -f /etc/pacman.d/blackarch-mirrorlist.pacnew ]; then
     mv /etc/pacman.d/blackarch-mirrorlist.pacnew \
       /etc/pacman.d/blackarch-mirrorlist
