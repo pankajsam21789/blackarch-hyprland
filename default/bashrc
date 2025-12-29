@@ -1,11 +1,33 @@
 # If not running interactively, don't do anything (leave this at the top of this file)
 [[ $- != *i* ]] && return
-
-# All the default Blackarch aliases and functions
-# (don't mess with these directly, just overwrite them here!)
-source ~/.local/share/blackarch/default/bash/rc
-
-# Add your own exports, aliases, and functions here.
 #
-# Make an alias for invoking commands you use constantly
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+# colors
+darkgrey="$(tput bold ; tput setaf 0)"
+white="$(tput bold ; tput setaf 7)"
+blue="$(tput bold; tput setaf 4)"
+cyan="$(tput bold; tput setaf 6)"
+nc="$(tput sgr0)"
+# exports
+export PATH="${HOME}/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:"
+export PATH="${PATH}/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:"
+export PS1="\[$blue\][ \[$cyan\]\H \[$darkgrey\]\w\[$darkgrey\] \[$blue\]]\\[$darkgrey\]# \[$nc\]"
+PS1='\e[34m[\e[32m\u\e[0m@\e[32m\h \e[31m\W\e[34m]\e[32m\$\e[0m '
+[[ $- != *i* ]] && return
+fastfetch
+alias rankmirrors-blackarch='rankmirrors -n 5 /etc/pacman.d/blackarch-mirrorlist_backup | sudo tee /etc/pacman.d/blackarch-mirrorlist'
+alias rankmirrors-arch='rankmirrors -n 5 /etc/pacman.d/mirrorlist_backup | sudo tee /etc/pacman.d/mirrorlist'
+alias gcredential="git config credential.helper store"
+alias bat1='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
+hyprlockenable () {
+  hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+  hyprctl --instance 0 "dispatch exec hyprlock"
+}
+source ~/.local/share/omarchy/default/bash/rc
 # alias p='python'
+# alias b='bat'
+. "$HOME/.local/share/../bin/env"
+eval "$(starship init bash)"
