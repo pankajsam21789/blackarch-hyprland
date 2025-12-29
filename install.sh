@@ -36,14 +36,6 @@ msg()
   echo "$(tput bold; tput setaf 2)[+] ${*}$(tput sgr0)"
 }
 
-# check for root privilege
-check_priv()
-{
-  if [ "$(id -u)" -ne 0 ]; then
-    err "you must be root"
-  fi
-}
-
 # make a temporary directory and cd into
 make_tmp_dir()
 {
@@ -187,7 +179,6 @@ pacman_upgrade()
 blackarch_setup()
 {
   msg 'installing blackarch keyring...'
-  check_priv
   set_umask
   make_tmp_dir
   check_internet
