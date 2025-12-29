@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Take backup of existing files
+sudo cp -f /etc/pacman.conf /etc/pacman.conf.bak
+sudo cp -f ~/.local/share/blackarch/default/pacman/pacman.conf /etc/pacman.conf
+sudo cp -f ~/.local/share/blackarch/default/pacman/blackarch-mirrorlist /etc/pacman.d/blackarch-mirrorlist
+
+echo
+
+# Reset all package DBs and then update
+sudo pacman -Syyu --noconfirm
