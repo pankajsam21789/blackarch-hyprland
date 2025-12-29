@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rfkill unblock wifi
+blackarch-launch-or-focus-tui impala

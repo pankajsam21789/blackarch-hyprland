@@ -1,0 +1,1 @@
+blackarch-pkg-add antiransom artillery beeswarm bluepot conpot epicwebhoneypot fakeap fakenetbios fiked heartbleed-honeypot honeyd honeypy honssh hpfeeds inetsim kippo pshitt python2-hpfeeds snare ssh-honeypot wifi-honey wordpot

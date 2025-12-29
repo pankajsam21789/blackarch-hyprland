@@ -1,0 +1,4 @@
+#!/bin/bash
+
+blackarch-refresh-config hypr/hyprsunset.conf
+blackarch-restart-hyprsunset

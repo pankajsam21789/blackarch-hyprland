@@ -1,0 +1,5 @@
+#!/bin/bash
+
+blackarch-refresh-config swayosd/config.toml
+blackarch-refresh-config swayosd/style.css
+blackarch-restart-swayosd

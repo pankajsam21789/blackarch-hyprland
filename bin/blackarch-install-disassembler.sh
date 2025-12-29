@@ -1,0 +1,1 @@
+blackarch-pkg-add abcd androguard android-apktool angr angr-management angr-py2 beebug binnavi chiasm-shell dwarf eresi hopper ida-free inguma libdisasm lief mara-framework marc4dasm pe-bear plasma-disasm pwntools python-pcodedmp python2-capstone python2-pcodedmp radare2-keystone radare2-unicorn redasm scratchabit syms2elf unstrip veles viper vivisect

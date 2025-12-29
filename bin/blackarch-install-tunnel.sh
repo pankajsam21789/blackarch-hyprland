@@ -1,0 +1,1 @@
+blackarch-pkg-add chisel chownat crypthook ctunnel dns2tcp firecat fraud-bridge icmptx ip-https-tools ligolo-ng matahari morxtunel multitun neo-regeorg ngrok oniongrok packet-o-matic pr0cks regeorg shootback ssrf-proxy stegosip tunna turner udptunnel vstt xfltreat

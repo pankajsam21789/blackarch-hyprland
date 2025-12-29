@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Ensure walker is set to autostart
+mkdir -p ~/.config/autostart/
+cp $BLACKARCH_PATH/autostart/walker.desktop ~/.config/autostart/
+systemctl --user daemon-reload
+
+blackarch-refresh-config walker/config.toml
+blackarch-refresh-config elephant/calc.toml
+blackarch-refresh-config elephant/desktopapplications.toml
+blackarch-restart-walker

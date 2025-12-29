@@ -1,0 +1,4 @@
+#!/bin/bash
+
+blackarch-refresh-config hypr/hypridle.conf
+blackarch-restart-hypridle

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+blackarch-update-time
+blackarch-update-keyring
+blackarch-update-available-reset
+blackarch-update-system-pkgs
+blackarch-migrate
+blackarch-hook post-update
+blackarch-update-restart

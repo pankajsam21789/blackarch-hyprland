@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+echo -e "\e[32mUpdate Firmware\e[0m"
+
+if blackarch-cmd-missing fwupdmgr; then
+  blackarch-pkg-add fwupd
+fi
+
+fwupdmgr refresh
+sudo fwupdmgr update

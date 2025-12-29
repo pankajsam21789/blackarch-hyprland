@@ -1,0 +1,5 @@
+#!/bin/bash
+
+blackarch-refresh-config waybar/config.jsonc
+blackarch-refresh-config waybar/style.css
+blackarch-restart-waybar

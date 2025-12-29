@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if [[ -z $1 && $1 != "CNCLD" ]]; then
+  echo "Usage: blackarch-theme-set <theme-name>"
+  exit 1
+fi
+
+THEMES_DIR="$HOME/.config/blackarch/themes/"
+CURRENT_THEME_DIR="$HOME/.config/blackarch/current/theme"
+
+THEME_NAME=$(echo "$1" | sed -E 's/<[^>]+>//g' | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+THEME_PATH="$THEMES_DIR/$THEME_NAME"
+
+# Check if the theme entered exists
+if [[ ! -d "$THEME_PATH" ]]; then
+  echo "Theme '$THEME_NAME' does not exist in $THEMES_DIR"
+  exit 1
+fi
+
+# Update theme symlinks
+ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
+
+# Change background with theme
+blackarch-theme-bg-next
+
+# Restart components to apply new theme
+if pgrep -x waybar >/dev/null; then
+  blackarch-restart-waybar
+fi
+blackarch-restart-swayosd
+blackarch-restart-terminal
+hyprctl reload
+pkill -SIGUSR2 btop
+makoctl reload
+
+# Change gnome, browser, vscode, cursor themes
+blackarch-theme-set-gnome
+blackarch-theme-set-browser
+blackarch-theme-set-vscode
+blackarch-theme-set-cursor
+blackarch-theme-set-obsidian
+
+# Call hook on theme set
+blackarch-hook theme-set "$THEME_NAME"

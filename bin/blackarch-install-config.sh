@@ -1,0 +1,1 @@
+blackarch-pkg-add bactl blackarch-config-awesome blackarch-config-bash blackarch-config-fluxbox blackarch-config-gtk blackarch-config-i3 blackarch-config-lxdm blackarch-config-openbox blackarch-config-spectrwm blackarch-config-vim blackarch-config-x11 blackarch-menus

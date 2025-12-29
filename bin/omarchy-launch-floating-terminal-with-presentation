@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cmd="$*"
+exec setsid uwsm-app -- xdg-terminal-exec --app-id=org.blackarch.terminal --title=Blackarch -e bash -c "blackarch-show-logo; $cmd; blackarch-show-done"

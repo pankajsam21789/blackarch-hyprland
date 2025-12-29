@@ -1,0 +1,1 @@
+blackarch-pkg-add bleah blue-hydra bluebugger bluediving bluefog bluelog bluepot blueprint blueranger bluescan bluesnarfer bluphish braces bss bt_audit btcrack btlejack btproxy-mitm btscanner carwhisperer crackle fl0p ghettotooth hidattack obexstress redfang spooftooph tbear ubertooth

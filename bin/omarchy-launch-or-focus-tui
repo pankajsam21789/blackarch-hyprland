@@ -1,0 +1,6 @@
+#!/bin/bash
+
+APP_ID="org.blackarch.$(basename $1)"
+LAUNCH_COMMAND="blackarch-launch-tui $@"
+
+exec blackarch-launch-or-focus "$APP_ID" "$LAUNCH_COMMAND"

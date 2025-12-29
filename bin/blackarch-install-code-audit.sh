@@ -1,0 +1,1 @@
+blackarch-pkg-add androwarn bof-detector brakeman cflow codeql cpptest detect-secrets devaudit expose git-dump graudit leena local-php-security-checker mosca njsscan peach-fuzz php-malware-finder php-vulnerability-hunter phpstan procyon pscan rats retire semgrep slither smalisca snyk spaf spotbugs stacoan stoq tell-me-your-secrets trufflehog whispers wpbullet wscript yasca

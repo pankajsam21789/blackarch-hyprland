@@ -1,0 +1,11 @@
+# Changes require a restart to take effect.
+
+# Ensure Blackarch bins are in the path
+export BLACKARCH_PATH=$HOME/.local/share/blackarch
+export PATH=$BLACKARCH_PATH/bin:$PATH
+
+# Set default terminal and editor
+source ~/.config/uwsm/default
+
+# Activate mise if present on the system
+blackarch-cmd-present mise && eval "$(mise activate bash)"

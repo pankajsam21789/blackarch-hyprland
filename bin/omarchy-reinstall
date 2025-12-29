@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+if [ "$EUID" -eq 0 ]; then
+  echo "Error: This script should not be run as root"
+  exit 1
+fi
+
+echo -e "This will reinstall all the default Blackarch packages and reset all default configs.\nWarning: All changes to configs will be lost.\n"
+
+if gum confirm "Are you sure you want to reinstall and lose all config changes?"; then
+  echo "Resetting Blackarch repository"
+  git clone "https://github.com/basecamp/blackarch.git" ~/.local/share/blackarch-new >/dev/null
+  rm -rf $BLACKARCH_PATH
+  mv ~/.local/share/blackarch-new $BLACKARCH_PATH
+
+  echo "Reinstalling missing Blackarch packages"
+  mapfile -t packages < <(grep -v '^#' "$BLACKARCH_PATH/install/blackarch-base.packages" | grep -v '^$')
+  sudo pacman -Syu --noconfirm --needed "${packages[@]}"
+
+  echo "Resetting all Blackarch configs"
+  cp -R ~/.local/share/blackarch/config/* ~/.config/
+  cp ~/.local/share/blackarch/default/bashrc ~/.bashrc
+  echo '[[ -f ~/.bashrc ]] && . ~/.bashrc' | tee ~/.bash_profile >/dev/null
+
+  $(bash $BLACKARCH_PATH/install/config/theme.sh)
+  $(bash $BLACKARCH_PATH/install/config/git.sh)
+
+  blackarch-refresh-limine
+  blackarch-refresh-plymouth
+  blackarch-nvim-setup
+fi

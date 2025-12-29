@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+echo -e "\e[32mUpdate Blackarch\e[0m"
+
+git -C $BLACKARCH_PATH pull --autostash
+git -C $BLACKARCH_PATH diff --check || git -C $BLACKARCH_PATH reset --merge

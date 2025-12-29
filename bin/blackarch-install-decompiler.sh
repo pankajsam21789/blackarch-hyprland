@@ -1,0 +1,1 @@
+blackarch-pkg-add avaloniailspy beebug cafebabe cfr dnspy dotpeek fernflower flasm gadgetinspector hopper ida-free jd-cli jd-gui jpexs-decompiler justdecompile luyten pcode2code procyon python-uncompyle6 recaf recstudio snowman
