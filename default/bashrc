@@ -12,8 +12,8 @@ blue="$(tput bold; tput setaf 4)"
 cyan="$(tput bold; tput setaf 6)"
 nc="$(tput sgr0)"
 # exports
-export PATH="${HOME}/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:"
-export PATH="${PATH}/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:"
+export PATH="${HOME}/.local/share/blackarch/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:"
+export PATH="${PATH}:/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:"
 export PS1="\[$blue\][ \[$cyan\]\H \[$darkgrey\]\w\[$darkgrey\] \[$blue\]]\\[$darkgrey\]# \[$nc\]"
 PS1='\e[34m[\e[32m\u\e[0m@\e[32m\h \e[31m\W\e[34m]\e[32m\$\e[0m '
 [[ $- != *i* ]] && return
@@ -26,7 +26,7 @@ hyprlockenable () {
   hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
   hyprctl --instance 0 "dispatch exec hyprlock"
 }
-source ~/.local/share/omarchy/default/bash/rc
+source ~/.local/share/blackarch/default/bash/rc
 # alias p='python'
 # alias b='bat'
 . "$HOME/.local/share/../bin/env"
