@@ -1,10 +1,7 @@
 # Blackarch core package list installed via install/packaging/base.sh
 # This file is also used by the ISO builder when determining needs
 
-1password-beta
-1password-cli
 aether
-alacritty
 asdcontrol
 avahi
 bash-completion
@@ -34,7 +31,6 @@ fd
 ffmpegthumbnailer
 fontconfig
 fzf
-ghostty
 github-cli
 gnome-calculator
 gnome-keyring
@@ -76,6 +72,7 @@ man-db
 mariadb-libs
 mise
 mpv
+mpv-mpris
 nautilus
 gnome-disk-utility
 noto-fonts
@@ -86,9 +83,9 @@ nss-mdns
 nvim
 obs-studio
 obsidian
-blackarch-chromium
-blackarch-nvim
-blackarch-walker
+omarchy-chromium
+omarchy-nvim
+omarchy-walker
 pamixer
 pinta
 playerctl
