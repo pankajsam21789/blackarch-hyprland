@@ -119,7 +119,7 @@ delete_signature()
 # make sure /etc/pacman.d/gnupg is usable
 check_pacman_gnupg()
 {
-  pacman-key --init
+  sudo -u root pacman-key --init
 }
 
 # install the keyring
@@ -129,7 +129,7 @@ install_keyring()
     -C /usr/share/pacman/keyrings/
 
   # just in case
-  sudo pacman-key --populate
+  sudo -u root pacman-key --populate
 }
 
 # ask user for mirror
