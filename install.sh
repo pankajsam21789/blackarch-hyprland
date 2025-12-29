@@ -133,11 +133,11 @@ check_pacman_gnupg()
 # install the keyring
 install_keyring()
 {
-  tar xfz "blackarch-keyring-$VERSION.tar.gz" --strip-components=1 \
+  sudo tar xfz "blackarch-keyring-$VERSION.tar.gz" --strip-components=1 \
     -C /usr/share/pacman/keyrings/
 
   # just in case
-  pacman-key --populate
+  sudo pacman-key --populate
 }
 
 # ask user for mirror
