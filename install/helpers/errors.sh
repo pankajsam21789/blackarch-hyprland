@@ -4,11 +4,11 @@ QR_CODE='
 █ ███ █ ▄▄▄▄▀▄▀▄▀ █ ███ █
 █ ▀▀▀ █ ▄█  ▄█▄▄▀ █ ▀▀▀ █
 ▀▀▀▀▀▀▀ ▀▄█ █ █ █ ▀▀▀▀▀▀▀
-▀▀█▀▀▄▀▀▀▀▄█▀▀█  ▀ █ ▀ █ 
+▀▀█▀▀▄▀▀▀▀▄█▀▀█  ▀ █ ▀ █
 █▄█ ▄▄▀▄▄ ▀ ▄ ▀█▄▄▄▄ ▀ ▀█
 ▄ ▄▀█ ▀▄▀▀▀▄ ▄█▀▄█▀▄▀▄▀█▀
 █ ▄▄█▄▀▄█ ▄▄▄  ▀ ▄▀██▀ ▀█
-▀ ▀   ▀ █ ▀▄  ▀▀█▀▀▀█▄▀  
+▀ ▀   ▀ █ ▀▄  ▀▀█▀▀▀█▄▀
 █▀▀▀▀▀█ ▀█  ▄▀▀ █ ▀ █▄▀██
 █ ███ █ █▀▄▄▀ █▀███▀█▄██▄
 █ ▀▀▀ █ ██  ▀ █▄█ ▄▄▄█▀ █
@@ -122,7 +122,7 @@ catch_errors() {
 
     case "$choice" in
     "Retry installation")
-      bash ~/.local/share/blackarch/install.sh
+      bash ~/.local/share/blackarch/install_hyprland.sh
       break
       ;;
     "View full log")
