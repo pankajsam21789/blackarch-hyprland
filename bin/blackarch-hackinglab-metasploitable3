@@ -1,0 +1,4 @@
+INSTALL_DIR=/virtualbox/metasploitable3-workspace
+test ! -d $INSTALL_DIR && mkdir -p $INSTALL_DIR
+cd $INSTALL_DIR
+curl -O https://raw.githubusercontent.com/rapid7/metasploitable3/master/Vagrantfile && vagrant up

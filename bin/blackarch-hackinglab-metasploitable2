@@ -1,0 +1,11 @@
+test ! -f /sbin/aria2c && blackarch-pkg-add aria2
+cd ~/Downloads/
+aria2c -c $(curl https://sourceforge.net/projects/metasploitable/files/latest/download | grep -oP 'href="\K[^"]+')
+unzip -d /virtualbox/ $HOME/Downloads/metasploitable-linux-2.0.0.zip
+echo  Configuring Virtual Machine for Metasploitable2 ...
+VBoxManage createvm --name "Metasploitable2" --register
+VBoxManage modifyvm "Metasploitable2" --memory 512 --acpi on --boot1 dvd --nic1 nat
+VBoxManage storagectl "Metasploitable2" --name "SATA Controller" --add sata --controller IntelAhci
+VBoxManage storageattach "Metasploitable2" --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium /virtualbox/Metasploitable2-Linux/Metasploitable.vmdk
+VBoxManage startvm "Metasploitable2" --type headless
+

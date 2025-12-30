@@ -1,0 +1,5 @@
+blackarch-pkg-add virtualbox virtualbox-host-modules-arch
+sudo usermod -aG vboxusers $USER
+sudo modprobe vboxdrv modprobe -a vboxguest vboxsf vboxvideo
+yay -S virtualbox-ext-oracle
+
