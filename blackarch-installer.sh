@@ -128,6 +128,7 @@ ROOT_PART=''
 # crypted root
 CRYPT_ROOT='root'
 ROOT_SUBVOL='blackarch'
+HOME_SUBVOL='home'
 
 # swap partition
 SWAP_PART=''
@@ -1250,6 +1251,13 @@ mount_filesystems()
   mkdir "$CHROOT/boot" > $VERBOSE 2>&1
   if ! mount "$BOOT_PART" "$CHROOT/boot"; then
     err "Error mounting boot partition, leaving."
+    exit $FAILURE
+  fi
+
+  # home
+  mkdir "$CHROOT/home" > $VERBOSE 2>&1
+  if ! mount -o "subvol=@${HOME_SUBVOL},compress=zstd" "/dev/mapper/$CRYPT_ROOT/home" $CHROOT; then
+    err "Error mounting home filesystem, leaving."
     exit $FAILURE
   fi
 
