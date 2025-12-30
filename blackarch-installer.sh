@@ -390,13 +390,17 @@ ask_install_mode()
 # ask for output mode
 ask_output_mode()
 {
-  title 'Environment > Output Mode'
-  wprintf '[+] Available output modes:'
-  printf "\n
-  1. Quiet (default)
-  2. Verbose (output of system commands: mkfs, pacman, etc.)\n\n"
-  wprintf "[?] Make a choice: "
-  read -r output_opt
+  output_opt=2
+  while [ -z "$output_opt" ]
+  do
+    title 'Environment > Output Mode'
+    wprintf '[+] Available output modes:'
+    printf "\n
+    1. Quiet (default)
+    2. Verbose (output of system commands: mkfs, pacman, etc.)\n\n"
+    wprintf "[?] Make a choice: "
+    read -r output_opt
+  done
   if [ "$output_opt" = 2 ]
   then
     VERBOSE='/dev/stdout'
@@ -442,10 +446,12 @@ ask_locale()
 # set locale to use
 set_locale()
 {
-  title 'Environment > Locale Setup'
-  wprintf '[?] Set locale [en_US.UTF-8]: '
-  read -r LOCALE
-
+  while [ -z "$LOCALE" ]
+  do
+    title 'Environment > Locale Setup'
+    wprintf '[?] Set locale [en_US.UTF-8]: '
+    read -r LOCALE
+  done
   # default locale
   if [ -z "$LOCALE" ]
   then
@@ -498,10 +504,12 @@ ask_keymap()
 # set keymap to use
 set_keymap()
 {
-  title 'Environment > Keymap Setup'
-  wprintf '[?] Set keymap [us]: '
-  read -r KEYMAP
-
+  while [ -z "$KEYMAP" ]
+  do
+    title 'Environment > Keymap Setup'
+    wprintf '[?] Set keymap [us]: '
+    read -r KEYMAP
+  done
   # default keymap
   if [ -z "$KEYMAP" ]
   then
@@ -2346,8 +2354,8 @@ setup_blackarch()
   run_strap_sh
   sleep_clear 1
 
-  ask_x_setup
-  sleep_clear 3
+  # ask_x_setup
+  # sleep_clear 3
 
   if [ $X_SETUP -eq $TRUE ]
   then
@@ -2357,8 +2365,8 @@ setup_blackarch()
     sleep_clear 1
   fi
 
-  ask_vbox_setup
-  sleep_clear 1
+  # ask_vbox_setup
+  # sleep_clear 1
 
   if [ $VBOX_SETUP -eq $TRUE ]
   then
@@ -2366,8 +2374,8 @@ setup_blackarch()
     sleep_clear 1
   fi
 
-  ask_vmware_setup
-  sleep_clear 1
+  # ask_vmware_setup
+  # sleep_clear 1
 
   if [ $VMWARE_SETUP -eq $TRUE ]
   then
@@ -2383,8 +2391,8 @@ setup_blackarch()
   enable_pacman_color 'chroot'
   sleep_clear 1
 
-  ask_ba_tools_setup
-  sleep_clear 1
+  # ask_ba_tools_setup
+  # sleep_clear 1
 
   if [ $BA_TOOLS_SETUP -eq $TRUE ]
   then
@@ -2488,12 +2496,12 @@ main()
   sleep_clear 0
 
   # locale
-  ask_locale
+  # ask_locale
   set_locale
   sleep_clear 0
 
   # keymap
-  ask_keymap
+  # ask_keymap
   set_keymap
   sleep_clear 0
 
