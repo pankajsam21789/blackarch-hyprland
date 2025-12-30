@@ -43,7 +43,7 @@ BLINK="$(tput blink)"
 NC="$(tput sgr0)"
 
 # installation mode
-INSTALL_MODE=''
+INSTALL_MODE='1'
 
 # install modes
 INSTALL_REPO='1'
@@ -51,7 +51,7 @@ INSTALL_FULL_ISO='2'
 INSTALL_BLACKMAN='3'
 
 # chosen locale
-LOCALE=''
+LOCALE='en_US.UTF-8'
 
 # set locale
 SET_LOCALE='1'
@@ -60,7 +60,7 @@ SET_LOCALE='1'
 LIST_LOCALE='2'
 
 # chosen keymap
-KEYMAP=''
+KEYMAP='us'
 
 # set keymap
 SET_KEYMAP='1'
@@ -84,7 +84,7 @@ NET_CONF_MANUAL='3'
 NET_CONF_SKIP='4'
 
 # hostname
-HOST_NAME=''
+HOST_NAME='hacker'
 
 # host ipv4 address
 HOST_IPV4=''
@@ -101,11 +101,14 @@ BROADCAST=''
 # nameserver address
 NAMESERVER=''
 
+# My Opteted Variables
+locale_opt=1
+keymap_opt=1
 # DualBoot flag
-DUALBOOT=''
+DUALBOOT=$FALSE
 
 # LUKS flag
-LUKS=''
+LUKS=$TRUE
 
 # avalable hard drive
 HD_DEVS=''
@@ -120,10 +123,10 @@ PARTITIONS=''
 PART_LABEL=''
 
 # boot partition
-BOOT_PART=''
+BOOT_PART='/dev/nvme0n1p1'
 
 # root partition
-ROOT_PART=''
+ROOT_PART='/dev/nvme0n1p2'
 
 # crypted root
 CRYPT_ROOT='root'
@@ -134,16 +137,16 @@ HOME_SUBVOL='home'
 SWAP_PART=''
 
 # boot fs type - default: ext4
-BOOT_FS_TYPE=''
+BOOT_FS_TYPE='fat32'
 
 # root fs type - default: ext4
-ROOT_FS_TYPE=''
+ROOT_FS_TYPE='btrfs'
 
 # chroot directory / blackarch linux installation
 CHROOT='/mnt'
 
 # normal system user
-NORMAL_USER=''
+NORMAL_USER='blackarch'
 
 # default BlackArch Linux repository URL
 #BA_REPO_URL='https://www.mirrorservice.org/sites/blackarch.org/blackarch/$repo/os/$arch'
@@ -354,6 +357,7 @@ check_uid()
 # welcome and ask for installation mode
 ask_install_mode()
 {
+  INSTALL_MODE=1
   while
     [ "$INSTALL_MODE" != "$INSTALL_REPO" ] && \
     [ "$INSTALL_MODE" != "$INSTALL_BLACKMAN" ] && \
@@ -907,7 +911,7 @@ ask_hd_dev()
 # get available partitions on hard drive
 get_partitions()
 {
-  PARTITIONS=$(fdisk -l "${HD_DEV}" -o device,size,type | \
+  PARTITIONS=$(fdisk -l "${HD_DEV}" -o device,size,type \
     grep "${HD_DEV}[[:alnum:]]" |awk '{print $1;}')
 
   return $SUCCESS
@@ -969,6 +973,7 @@ get_partition_label()
 # get partitions
 ask_partitions()
 {
+  get_partitions
   while [ "$BOOT_PART" = '' ] || \
     [ "$ROOT_PART" = '' ] || \
     [ "$BOOT_FS_TYPE" = '' ] || \
@@ -1256,7 +1261,7 @@ mount_filesystems()
 
   # home
   mkdir "$CHROOT/home" > $VERBOSE 2>&1
-  if ! mount -o "subvol=@${HOME_SUBVOL},compress=zstd" "/dev/mapper/$CRYPT_ROOT/home" $CHROOT; then
+  if ! mount -o "subvol=@${HOME_SUBVOL},compress=zstd" "/dev/mapper/$CRYPT_ROOT" $CHROOT/home; then
     err "Error mounting home filesystem, leaving."
     exit $FAILURE
   fi
@@ -2473,7 +2478,7 @@ main()
   check_iso_type
 
   # Update keyrings
-  install_keyrings
+  #install_keyrings
 
   # install mode
   ask_install_mode
@@ -2496,45 +2501,44 @@ main()
   ask_hostname
   sleep_clear 0
 
-  if [ "$INSTALL_MODE" != "$INSTALL_FULL_ISO" ]
-  then
-    get_net_ifs
-    ask_net_conf_mode
-    if [ "$NET_CONF_MODE" != "$NET_CONF_SKIP" ]
-    then
-      ask_net_if
-    fi
-    case "$NET_CONF_MODE" in
-      "$NET_CONF_AUTO")
-        net_conf_auto
-        ;;
-      "$NET_CONF_WLAN")
-        ask_wlan_data
-        net_conf_wlan
-        ;;
-      "$NET_CONF_MANUAL")
-        ask_net_addr
-        net_conf_manual
-        ;;
-      "$NET_CONF_SKIP")
-        ;;
-      *)
-        ;;
-    esac
-    sleep_clear 1
-    check_inet_conn
-    sleep_clear 1
-
-    # self updater
-    self_updater
-    sleep_clear 1
-
-    # pacman
-    ask_mirror_arch
-    sleep_clear 1
-    update_pacman
-  fi
-
+  # if [ "$INSTALL_MODE" != "$INSTALL_FULL_ISO" ]
+  # then
+  #   get_net_ifs
+  #   ask_net_conf_mode
+  #   if [ "$NET_CONF_MODE" != "$NET_CONF_SKIP" ]
+  #   then
+  #     ask_net_if
+  #   fi
+  #   case "$NET_CONF_MODE" in
+  #     "$NET_CONF_AUTO")
+  #       net_conf_auto
+  #       ;;
+  #     "$NET_CONF_WLAN")
+  #       ask_wlan_data
+  #       net_conf_wlan
+  #       ;;
+  #     "$NET_CONF_MANUAL")
+  #       ask_net_addr
+  #       net_conf_manual
+  #       ;;
+  #     "$NET_CONF_SKIP")
+  #       ;;
+  #     *)
+  #       ;;
+  #   esac
+  #   sleep_clear 1
+  #   check_inet_conn
+  #   sleep_clear 1
+  #
+  #   # self updater
+  #   self_updater
+  #   sleep_clear 1
+  #
+  #   # pacman
+  #   ask_mirror_arch
+  #   sleep_clear 1
+  #   update_pacman
+  # fi
   # hard drive
   get_hd_devs
   ask_hd_dev
