@@ -114,7 +114,7 @@ LUKS=$TRUE
 HD_DEVS=''
 
 # chosen hard drive device
-HD_DEV=''
+HD_DEV='/dev/nvme0n1'
 
 # Partitions
 PARTITIONS=''
@@ -123,13 +123,13 @@ PARTITIONS=''
 PART_LABEL=''
 
 # boot partition
-BOOT_PART='/dev/nvme0n1p1'
+BOOT_PART='/dev/nvme0n1p4'
 
 # root partition
-ROOT_PART='/dev/nvme0n1p2'
+ROOT_PART='/dev/nvme0n1p3'
 
 # crypted root
-CRYPT_ROOT='root'
+CRYPT_ROOT='r00t'
 ROOT_SUBVOL='blackarch'
 HOME_SUBVOL='home'
 
@@ -991,7 +991,7 @@ ask_partitions()
     wprintf '[+] Created partitions:'
     printf "\n\n"
 
-    fdisk -l "${HD_DEV}" -o device,size,type |grep "${HD_DEV}[[:alnum:]]"
+    fdisk -l "${HD_DEV}" -o device,size,type | grep "[[:alnum:]]"
 
     echo
 
@@ -2549,14 +2549,14 @@ main()
   # fi
   # hard drive
   get_hd_devs
-  ask_hd_dev
+  # ask_hd_dev
   # ask_dualboot
   sleep_clear 1
   umount_filesystems 'harddrive'
   sleep_clear 1
   # ask_cfdisk
   # sleep_clear 3
-  ask_luks
+  # ask_luks
   get_partition_label
   ask_partitions
   print_partitions
